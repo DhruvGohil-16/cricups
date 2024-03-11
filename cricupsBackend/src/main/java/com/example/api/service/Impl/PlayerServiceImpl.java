@@ -40,6 +40,10 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Override
     public List<Player> getPlayerInfo() {
+        return this.playerRepo.findAll();
+    }
+
+    public void updatePlayerInfo() {
 
         String baseUrl = "https://api.cricapi.com/v1";
         String offset = "0";
@@ -90,8 +94,6 @@ public class PlayerServiceImpl implements PlayerService {
         }
 
         Flux<Player> playerFlux = Flux.fromIterable(playerList);
-
-        return playerList;
     }
 
     public List<Player> updateDbInfo(WebClient webClient, List<Player> players) {

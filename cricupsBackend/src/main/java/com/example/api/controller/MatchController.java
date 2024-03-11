@@ -16,6 +16,8 @@ public class MatchController {
 
     public MatchController(MatchService matchService) {
         this.matchService = matchService;
+//        this.matchService.updateLiveMatches();
+//        this.matchService.updateRecentMatches();
     }
 
     @RequestMapping("/live")

@@ -28,6 +28,16 @@ public class TeamServiceImpl implements TeamService {
 
     @Override
     public List<Team> getTeamInfo() {
+        return this.teamRepo.findAll();
+    }
+
+    @Override
+    public Team findByTeamName(String country) {
+        // Find team by country name
+        return this.teamRepo.findByTeamName(country).orElse(null); // Assuming that the teamName field holds the country name
+    }
+
+    public void updateTeamInfo() {
 
         String baseUrl = "https://api.cricapi.com/v1";
         String offset;
@@ -82,12 +92,6 @@ public class TeamServiceImpl implements TeamService {
 
         Flux<Team> teamFlux = Flux.fromIterable(teamList);
 
-        return teamList;
-    }
-    @Override
-    public Team findByTeamName(String country) {
-        // Find team by country name
-        return teamRepo.findByTeamName(country).orElse(null); // Assuming that the teamName field holds the country name
     }
 
     public void updateDbInfo(List<Team> teams){
