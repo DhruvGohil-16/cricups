@@ -1,5 +1,6 @@
 package com.example.api.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.util.Date;
 
@@ -29,7 +30,6 @@ public class Match {
 
     private String textComplete;
 
-
     private String matchLink;
 
     @Enumerated
@@ -37,6 +37,31 @@ public class Match {
 
     private Date date = new Date();
 
+    @ManyToOne
+    @JoinColumn(name = "team1_id")
+    @JsonIgnore
+    private Team team1Id;
+    @ManyToOne
+    @JoinColumn(name = "team2_id")
+    @JsonIgnore
+    private Team team2Id;
+
+
+    public Team getTeam1Id() {
+        return team1Id;
+    }
+
+    public void setTeam1Id(Team team1Id) {
+        this.team1Id = team1Id;
+    }
+
+    public Team getTeam2Id() {
+        return team2Id;
+    }
+
+    public void setTeam2Id(Team team2Id) {
+        this.team2Id = team2Id;
+    }
 //    public Match(int matchId, String teams, String matchInfo, String team1, String team1Score, String team2, String team2Score, String liveText, String textComplete, String matchLink,MatchStatus status, Date date) {
 //        this.matchId = matchId;
 //        this.matchKey = teams+matchInfo;

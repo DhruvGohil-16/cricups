@@ -25,7 +25,7 @@ public class Player {
     private String country;
 
     @ManyToOne
-    @JoinColumn(name = "team_id") // Assuming the column in the player_info table referencing the team is called team_id
+    @JoinColumn(name = "team_id")
     private Team team;
 
     public Team getTeam() {

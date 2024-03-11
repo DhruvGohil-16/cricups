@@ -85,7 +85,7 @@ public class TeamServiceImpl implements TeamService {
         return teamList;
     }
     @Override
-    public Team findTeamByCountry(String country) {
+    public Team findByTeamName(String country) {
         // Find team by country name
         return teamRepo.findByTeamName(country).orElse(null); // Assuming that the teamName field holds the country name
     }

@@ -8,5 +8,5 @@ public interface TeamService {
     //gives info of all players
     List<Team> getTeamInfo();
 
-    Team findTeamByCountry(String country);
+    Team findByTeamName(String country);
 }

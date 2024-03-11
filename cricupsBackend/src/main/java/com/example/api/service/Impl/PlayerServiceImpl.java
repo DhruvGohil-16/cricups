@@ -54,6 +54,7 @@ public class PlayerServiceImpl implements PlayerService {
                     .defaultHeader("apikey", apiKey)
                     .build();
 
+
             playerList = webClient.get()
                     .uri(url)
                     .accept(MediaType.APPLICATION_JSON)
@@ -132,7 +133,7 @@ public class PlayerServiceImpl implements PlayerService {
                                     player3.setBowlingStyle(data.getString("bowlingStyle"));
                                 if (data.has("placeOfBirth"))
                                     player3.setPlaceOfBirth(data.getString("placeOfBirth"));
-                                Team team = teamService.findTeamByCountry(data.getString("country"));
+                                Team team = teamService.findByTeamName(data.getString("country"));
                                 if (team == null) {
                                     System.out.println("team not found");
                                 }
