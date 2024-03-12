@@ -1,6 +1,7 @@
 import React from 'react'
 import { FaInstagram, FaFacebook, FaXing } from 'react-icons/fa';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 export default function ContactUs() {
   return (
@@ -23,6 +24,7 @@ export default function ContactUs() {
                 </div>
             </div>
         </div>
+        <Footer/>
     </>
   )
 }

@@ -14,7 +14,7 @@ public class CricupsBackendApplication {
 
 		MatchService matchService = context.getBean(MatchService.class);
 
-//		matchService.updateMatches();
+		matchService.updateMatches();
 	}
 
 }

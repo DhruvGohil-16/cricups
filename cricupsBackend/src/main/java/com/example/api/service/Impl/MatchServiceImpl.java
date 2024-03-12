@@ -3,6 +3,7 @@ package com.example.api.service.Impl;
 import com.example.api.entity.Match;
 import com.example.api.entity.Team;
 import com.example.api.repository.MatchRepo;
+import com.example.api.repository.TeamRepo;
 import com.example.api.service.MatchService;
 import com.example.api.service.TeamService;
 import org.jsoup.Connection;
@@ -23,11 +24,14 @@ import java.util.*;
 public class MatchServiceImpl implements MatchService {
 
     private final MatchRepo matchRepo;
+
+    private final TeamRepo teamRepo;
     private final TeamService teamService;
 
     @Autowired
-    public MatchServiceImpl(MatchRepo matchRepo, TeamService teamService) {
+    public MatchServiceImpl(MatchRepo matchRepo, TeamRepo teamRepo,TeamService teamService) {
         this.matchRepo = matchRepo;
+        this.teamRepo = teamRepo;
         this.teamService = teamService;
     }
 
@@ -77,6 +81,9 @@ public class MatchServiceImpl implements MatchService {
                     System.out.println("first team : "+team1);
                     System.out.println("second team : "+team2);
 
+                    String team1Flag = team1.getTeamFlag();
+                    String team2Flag = team2.getTeamFlag();
+
                     //getting match link
                     String matchLink = match.select("a.cb-lv-scrs-well.cb-lv-scrs-well-live").attr("href").toString();
 
@@ -87,6 +94,8 @@ public class MatchServiceImpl implements MatchService {
                     match1.setTeam1Score(score);
                     match1.setTeam2(bowlTeam);
                     match1.setTeam2Score(bowlTeamScore);
+                    match1.setFlag1(team1Flag);
+                    match1.setFlag2(team2Flag);
                     match1.setLiveText(textLive);
                     match1.setMatchLink(matchLink);
                     match1.setTextComplete(textComplete);
@@ -139,7 +148,7 @@ public class MatchServiceImpl implements MatchService {
                     String matchInfo = matchElement.findElement(By.cssSelector("div.text-gray")).getText();
                     String textComplete = matchElement.findElement(By.cssSelector("div.cb-text-complete")).getText();
                     String matchLink = matchElement.findElement(By.cssSelector("a.cb-lv-scrs-well.cb-lv-scrs-well-complete")).getAttribute("href");
-
+                    System.out.println(teamsHeading);
                     String[] parts;
                     if (teamsHeading.contains("vs")) {
                         parts = teamsHeading.split("vs");
@@ -153,12 +162,18 @@ public class MatchServiceImpl implements MatchService {
                     if (secondTeam.contains(","))
                         secondTeam = secondTeam.substring(0, secondTeam.length() - 1);
 
+                    System.out.println(firstTeam);
+                    System.out.println(secondTeam);
                     // Setting teams
                     Team team1 = teamService.findByTeamName(firstTeam);
                     Team team2 = teamService.findByTeamName(secondTeam);
+
                     if (team1 == null || team2 == null) {
                         continue;
                     }
+
+                    String team1Flag = team1.getTeamFlag();
+                    String team2Flag = team2.getTeamFlag();
 
                     String batTeam = team1.getTeamName();
                     String bowlTeam = team2.getTeamName();
@@ -166,6 +181,8 @@ public class MatchServiceImpl implements MatchService {
                     match.setMatchLink(matchLink);
                     match.setTextComplete(textComplete);
                     match.setMatchStatus();
+                    match.setFlag1(team1Flag);
+                    match.setFlag2(team2Flag);
                     match.setMatchKey(teamsHeading + matchInfo);
                     match.setTeam1Id(team1);
                     match.setTeam2Id(team2);

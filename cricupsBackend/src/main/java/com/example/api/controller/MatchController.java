@@ -5,6 +5,7 @@ import com.example.api.service.MatchService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
@@ -20,13 +21,15 @@ public class MatchController {
 //        this.matchService.updateRecentMatches();
     }
 
-    @RequestMapping("/live")
+    @GetMapping("/live")
     public ResponseEntity<List<Match>> getLiveMatches(){
+        System.out.println("getLiveMatches called");
         return new ResponseEntity<>(this.matchService.getLiveMatches(), HttpStatus.OK);
     }
 
-    @RequestMapping("/recent")
+    @GetMapping("/recent")
     public ResponseEntity<List<Match>> getRecentMatches(){
+        System.out.println("getRecentMatches called");
         return new ResponseEntity<>(this.matchService.getRecentMatches(), HttpStatus.OK);
     }
 
