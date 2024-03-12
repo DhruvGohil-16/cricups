@@ -25,13 +25,11 @@ public class MatchServiceImpl implements MatchService {
 
     private final MatchRepo matchRepo;
 
-    private final TeamRepo teamRepo;
     private final TeamService teamService;
 
     @Autowired
-    public MatchServiceImpl(MatchRepo matchRepo, TeamRepo teamRepo,TeamService teamService) {
+    public MatchServiceImpl(MatchRepo matchRepo,TeamService teamService) {
         this.matchRepo = matchRepo;
-        this.teamRepo = teamRepo;
         this.teamService = teamService;
     }
 
