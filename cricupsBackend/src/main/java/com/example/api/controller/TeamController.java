@@ -14,7 +14,10 @@ public class TeamController {
 
     private final TeamService teamService;
 
-    public TeamController(TeamService teamService) {this.teamService = teamService;}
+    public TeamController(TeamService teamService) {
+        this.teamService = teamService;
+        System.out.println("teamController called");
+    }
 
     @RequestMapping("/all-teams")
     public ResponseEntity<List<Team>> getAllTeams(){

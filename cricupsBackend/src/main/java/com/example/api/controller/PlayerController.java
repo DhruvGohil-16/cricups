@@ -14,7 +14,10 @@ public class PlayerController {
 
     private final PlayerService playerService;
 
-    public PlayerController(PlayerService playerService) {this.playerService = playerService;}
+    public PlayerController(PlayerService playerService) {
+        this.playerService = playerService;
+        System.out.println("playerController called");
+    }
 
     @RequestMapping("/all-players")
     public ResponseEntity<List<Player>> getAllPlayers(){

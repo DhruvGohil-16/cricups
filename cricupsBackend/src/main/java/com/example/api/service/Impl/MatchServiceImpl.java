@@ -3,10 +3,8 @@ package com.example.api.service.Impl;
 import com.example.api.entity.Match;
 import com.example.api.entity.Team;
 import com.example.api.repository.MatchRepo;
-import com.example.api.repository.TeamRepo;
 import com.example.api.service.MatchService;
 import com.example.api.service.TeamService;
-import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -234,7 +232,7 @@ public class MatchServiceImpl implements MatchService {
 
     @Override
     public List<Match> getRecentMatches() {
-        return this.matchRepo.findRecentMatches().orElse(null);
+        return this.matchRepo.findRecentMatches();
     }
 
     @Override

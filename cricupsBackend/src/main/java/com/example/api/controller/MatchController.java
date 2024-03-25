@@ -2,6 +2,7 @@ package com.example.api.controller;
 
 import com.example.api.entity.Match;
 import com.example.api.service.MatchService;
+import jakarta.annotation.PostConstruct;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -15,8 +16,13 @@ public class MatchController {
 
     private final MatchService matchService;
 
+    @PostConstruct
+    public void myMethod(){
+        System.out.println("myMethod called");
+    }
     public MatchController(MatchService matchService) {
         this.matchService = matchService;
+        System.out.println("matchController called");
 //        this.matchService.updateLiveMatches();
 //        this.matchService.updateRecentMatches();
     }

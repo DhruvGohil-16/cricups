@@ -17,7 +17,7 @@ public interface MatchRepo extends JpaRepository<Match,Integer> {
     @Query("SELECT m FROM Match m WHERE m.status != 1")
     Optional<List<Match>> findLiveMatches();
 
-    @Query("SELECT m FROM Match m WHERE m.status = 1")
-    Optional<List<Match>> findRecentMatches();
+    @Query("SELECT m FROM Match m WHERE m.status = 1 ORDER BY m.date ASC")
+    List<Match> findRecentMatches();
 
 }

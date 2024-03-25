@@ -31,7 +31,7 @@ export default function RecentMatches() {
   return (
     <div className='bg-gray-900'>
         <Header/>
-        <div className="container mx-auto w-screen text-white">
+        <div className="container min-h-screen mx-auto w-screen text-white">
             <h2 className="text-3xl font-bold my-4">Recent Matches</h2>
             {dataloaded ? (
                 <div className='bg-gray-900'>

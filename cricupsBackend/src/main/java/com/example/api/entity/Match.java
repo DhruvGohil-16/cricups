@@ -197,9 +197,6 @@ public class Match {
             this.status=MatchStatus.COMPLETED;
         }
     }
-    public void setStatus(MatchStatus status) {
-        this.status = status;
-    }
 
     public Date getDate() {
         return date;
